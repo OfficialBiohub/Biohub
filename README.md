@@ -7,6 +7,17 @@ An open home for life-science projects, data and tools.
 [`index.html`](index.html) is a self-contained welcome page for this repository —
 no build step, no dependencies, just open it.
 
+It is available in two languages, linked to each other by a switcher in the
+top-right corner:
+
+| Language | File |
+| --- | --- |
+| English | [`index.html`](index.html) |
+| বাংলা (Bangla) | [`bn/index.html`](bn/index.html) |
+
+The Bangla page loads the *Noto Sans Bengali* webfont, so the script renders
+correctly even on systems without a Bengali font installed.
+
 ```bash
 # Open it directly
 open index.html          # macOS

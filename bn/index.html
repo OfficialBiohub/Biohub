@@ -1,17 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="bn">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Welcome to Biohub</title>
-<meta name="description" content="Welcome to Biohub — an open home for life-science projects, data and tools." />
-<link rel="alternate" hreflang="en" href="./index.html" />
-<link rel="alternate" hreflang="bn" href="./bn/index.html" />
+<title>বায়োহাব-এ স্বাগতম</title>
+<meta name="description" content="বায়োহাব-এ স্বাগতম — জীববিজ্ঞান বিষয়ক প্রকল্প, ডেটা ও টুলের একটি উন্মুক্ত ঠিকানা।" />
+<link rel="alternate" hreflang="en" href="../index.html" />
+<link rel="alternate" hreflang="bn" href="./index.html" />
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧬</text></svg>" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;600;700&family=Noto+Sans+Mono:wght@400&display=swap" rel="stylesheet" />
 <style>
   :root {
     --bg: #05100d;
-    --bg-soft: #0b1a16;
     --card: rgba(255, 255, 255, 0.04);
     --border: rgba(120, 255, 214, 0.14);
     --text: #e8fff7;
@@ -27,15 +29,16 @@
 
   body {
     margin: 0;
-    font-family: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-family: "Noto Sans Bengali", "Hind Siliguri", "Kalpurush",
+                 ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
     color: var(--text);
     background: var(--bg);
-    line-height: 1.6;
+    /* Bengali script needs a little more vertical room than Latin. */
+    line-height: 1.85;
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
   }
 
-  /* Ambient background */
   .glow {
     position: fixed;
     border-radius: 50%;
@@ -91,15 +94,13 @@
     border-color: var(--border);
   }
 
-  /* Hero */
   .badge {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    padding: 6px 14px;
-    font-size: 0.8rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
+    padding: 6px 16px;
+    font-size: 0.82rem;
+    letter-spacing: 0.04em;
     color: var(--accent);
     background: rgba(53, 226, 164, 0.08);
     border: 1px solid var(--border);
@@ -110,7 +111,6 @@
     width: 7px; height: 7px;
     border-radius: 50%;
     background: var(--accent);
-    box-shadow: 0 0 0 0 rgba(53, 226, 164, 0.6);
     animation: pulse 2.4s ease-out infinite;
   }
 
@@ -121,9 +121,9 @@
   }
 
   h1 {
-    font-size: clamp(2.4rem, 7vw, 4rem);
-    line-height: 1.08;
-    letter-spacing: -0.03em;
+    font-size: clamp(2.1rem, 6.2vw, 3.6rem);
+    line-height: 1.35;
+    letter-spacing: -0.01em;
     margin: 22px 0 0;
     font-weight: 700;
   }
@@ -136,9 +136,9 @@
   }
 
   .lede {
-    max-width: 620px;
+    max-width: 640px;
     margin: 18px 0 0;
-    font-size: clamp(1.02rem, 2.2vw, 1.18rem);
+    font-size: clamp(1.02rem, 2.2vw, 1.16rem);
     color: var(--muted);
   }
 
@@ -153,13 +153,13 @@
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    padding: 12px 22px;
+    padding: 11px 24px;
     border-radius: 999px;
     font-weight: 600;
     font-size: 0.95rem;
     text-decoration: none;
     border: 1px solid transparent;
-    transition: transform 0.16s ease, box-shadow 0.16s ease, background 0.16s ease, border-color 0.16s ease;
+    transition: transform 0.16s ease, box-shadow 0.16s ease, border-color 0.16s ease;
   }
   .btn:hover { transform: translateY(-2px); }
 
@@ -176,7 +176,6 @@
   }
   .btn--ghost:hover { border-color: rgba(120, 255, 214, 0.35); }
 
-  /* Terminal card */
   .terminal {
     margin-top: 48px;
     border: 1px solid var(--border);
@@ -194,10 +193,7 @@
     background: rgba(255, 255, 255, 0.03);
     border-bottom: 1px solid var(--border);
   }
-  .terminal__bar span {
-    width: 11px; height: 11px; border-radius: 50%;
-    background: #33463f;
-  }
+  .terminal__bar span { width: 11px; height: 11px; border-radius: 50%; }
   .terminal__bar span:nth-child(1) { background: #ff5f57; }
   .terminal__bar span:nth-child(2) { background: #febc2e; }
   .terminal__bar span:nth-child(3) { background: #28c840; }
@@ -205,25 +201,24 @@
     margin-left: 8px;
     font-size: 0.78rem;
     color: var(--muted);
-    letter-spacing: 0.04em;
   }
 
   pre {
     margin: 0;
     padding: 20px 18px;
     overflow-x: auto;
-    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
-    font-size: 0.88rem;
-    line-height: 1.75;
+    /* Commands stay in Latin/monospace; Bengali comments fall back gracefully. */
+    font-family: "Noto Sans Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 0.86rem;
+    line-height: 1.9;
   }
   .c-com { color: #5f7f75; }
   .c-cmd { color: var(--accent); }
   .c-out { color: #b9d6cd; }
 
-  /* Cards */
   .cards {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     gap: 16px;
     margin-top: 48px;
   }
@@ -240,17 +235,9 @@
     border-color: rgba(120, 255, 214, 0.32);
     background: rgba(255, 255, 255, 0.06);
   }
-  .card__icon { font-size: 1.5rem; }
-  .card h3 {
-    margin: 12px 0 6px;
-    font-size: 1.02rem;
-    letter-spacing: -0.01em;
-  }
-  .card p {
-    margin: 0;
-    font-size: 0.92rem;
-    color: var(--muted);
-  }
+  .card__icon { font-size: 1.5rem; line-height: 1; }
+  .card h3 { margin: 12px 0 6px; font-size: 1.05rem; }
+  .card p { margin: 0; font-size: 0.94rem; color: var(--muted); }
 
   footer {
     margin-top: 56px;
@@ -261,28 +248,24 @@
     gap: 10px;
     justify-content: space-between;
     align-items: center;
-    font-size: 0.86rem;
+    font-size: 0.88rem;
     color: var(--muted);
   }
   footer a { color: var(--accent); text-decoration: none; }
   footer a:hover { text-decoration: underline; }
 
-  /* Entrance animation */
   .reveal {
     opacity: 0;
     transform: translateY(14px);
     animation: rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
   }
-  .reveal:nth-child(1) { animation-delay: 0.05s; }
   .d1 { animation-delay: 0.12s; }
   .d2 { animation-delay: 0.2s; }
   .d3 { animation-delay: 0.28s; }
   .d4 { animation-delay: 0.36s; }
   .d5 { animation-delay: 0.44s; }
 
-  @keyframes rise {
-    to { opacity: 1; transform: translateY(0); }
-  }
+  @keyframes rise { to { opacity: 1; transform: translateY(0); } }
 
   @media (prefers-reduced-motion: reduce) {
     .reveal { animation: none; opacity: 1; transform: none; }
@@ -297,22 +280,23 @@
   <div class="grid-lines"></div>
 
   <main class="wrap">
-    <nav class="lang" aria-label="Select language">
-      <a href="./index.html" hreflang="en" aria-current="true">English</a>
-      <a href="./bn/index.html" hreflang="bn">বাংলা</a>
+    <nav class="lang" aria-label="ভাষা নির্বাচন">
+      <a href="../index.html" hreflang="en">English</a>
+      <a href="./index.html" hreflang="bn" aria-current="true">বাংলা</a>
     </nav>
 
     <header>
-      <div class="badge reveal"><span class="dot"></span> Biohub</div>
-      <h1 class="reveal d1">Welcome to <span class="accent">Biohub</span>.</h1>
+      <div class="badge reveal"><span class="dot"></span> বায়োহাব</div>
+      <h1 class="reveal d1"><span class="accent">বায়োহাব</span>-এ স্বাগতম।</h1>
       <p class="lede reveal d2">
-        An open home for life-science projects, data and tools. This page is the
-        starting point of the repository — clone it, build on it, and make it yours.
+        জীববিজ্ঞান বিষয়ক প্রকল্প, ডেটা ও টুলের একটি উন্মুক্ত ঠিকানা। এই পেজটি
+        রিপোজিটরির সূচনাবিন্দু — ক্লোন করুন, এর উপর ভিত্তি করে নতুন কিছু গড়ুন,
+        আর একে নিজের মতো করে সাজিয়ে নিন।
       </p>
 
       <div class="actions reveal d3">
-        <a class="btn btn--primary" href="https://github.com/OfficialBiohub/Biohub">View on GitHub →</a>
-        <a class="btn btn--ghost" href="#start">Get started</a>
+        <a class="btn btn--primary" href="https://github.com/OfficialBiohub/Biohub">গিটহাবে দেখুন →</a>
+        <a class="btn btn--ghost" href="#start">শুরু করুন</a>
       </div>
     </header>
 
@@ -321,45 +305,48 @@
         <span></span><span></span><span></span>
         <div class="terminal__title">bash — biohub</div>
       </div>
-<pre><code><span class="c-com"># Clone the repository</span>
+<pre><code><span class="c-com"># রিপোজিটরিটি ক্লোন করুন</span>
 <span class="c-cmd">git clone https://github.com/OfficialBiohub/Biohub.git</span>
 <span class="c-cmd">cd Biohub</span>
 
-<span class="c-com"># Open this welcome page locally</span>
+<span class="c-com"># এই স্বাগত পেজটি নিজের কম্পিউটারে খুলুন</span>
 <span class="c-cmd">python3 -m http.server 8000</span>
 <span class="c-out">Serving HTTP on 0.0.0.0 port 8000 (http://0.0.0.0:8000/) ...</span>
 
-<span class="c-out">👋 Hello, and welcome to Biohub!</span></code></pre>
+<span class="c-out">👋 হ্যালো, বায়োহাব-এ আপনাকে স্বাগতম!</span></code></pre>
     </section>
 
     <section class="cards">
       <article class="card reveal d2">
         <div class="card__icon">🧬</div>
-        <h3>Open science</h3>
-        <p>Research code and datasets kept in the open, versioned and reproducible.</p>
+        <h3>উন্মুক্ত বিজ্ঞান</h3>
+        <p>গবেষণার কোড ও ডেটা উন্মুক্তভাবে রাখা হয় — সংস্করণ-নিয়ন্ত্রিত এবং পুনরুৎপাদনযোগ্য।</p>
       </article>
       <article class="card reveal d3">
         <div class="card__icon">🛠️</div>
-        <h3>Practical tools</h3>
-        <p>Small, composable utilities that fit into everyday lab and analysis workflows.</p>
+        <h3>ব্যবহারিক টুল</h3>
+        <p>ছোট ও সহজে জোড়া লাগানো যায় এমন টুল, যা প্রতিদিনের ল্যাব ও বিশ্লেষণের কাজে খাপ খায়।</p>
       </article>
       <article class="card reveal d4">
         <div class="card__icon">🤝</div>
-        <h3>Built together</h3>
-        <p>Issues and pull requests are welcome — every contribution moves the work forward.</p>
+        <h3>একসাথে গড়া</h3>
+        <p>ইস্যু ও পুল রিকোয়েস্ট সবসময় স্বাগত — প্রতিটি অবদানই কাজটিকে এগিয়ে নিয়ে যায়।</p>
       </article>
     </section>
 
     <footer class="reveal d5">
-      <span>© <span id="year">2026</span> Biohub</span>
-      <span>Made with care · <a href="https://github.com/OfficialBiohub/Biohub">OfficialBiohub/Biohub</a></span>
+      <span>© <span id="year">২০২৬</span> বায়োহাব</span>
+      <span>যত্ন নিয়ে তৈরি · <a href="https://github.com/OfficialBiohub/Biohub">OfficialBiohub/Biohub</a></span>
     </footer>
   </main>
 
   <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
+    // Show the year in Bengali numerals (২০২৬ rather than 2026).
+    var year = new Date().getFullYear().toString();
+    var bnDigits = "০১২৩৪৫৬৭৮৯";
+    document.getElementById("year").textContent =
+      year.replace(/[0-9]/g, function (d) { return bnDigits[+d]; });
 
-    // Smooth scroll for in-page links
     document.querySelectorAll('a[href^="#"]').forEach(function (link) {
       link.addEventListener("click", function (e) {
         var target = document.querySelector(link.getAttribute("href"));
