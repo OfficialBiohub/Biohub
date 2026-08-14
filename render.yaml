@@ -1,0 +1,23 @@
+# Render Blueprint — https://render.com/docs/blueprint-spec
+#
+# Deploys the Biohub welcome page as a static site.
+# The page is plain HTML with no build step, so we simply publish the repo root.
+services:
+  - type: web
+    name: biohub-welcome
+    runtime: static
+    # No build step: index.html is served as-is.
+    buildCommand: ""
+    staticPublishPath: .
+    # Serve index.html for unknown paths so deep links don't 404.
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+    headers:
+      - path: /*
+        name: X-Content-Type-Options
+        value: nosniff
+      - path: /*
+        name: Referrer-Policy
+        value: strict-origin-when-cross-origin
