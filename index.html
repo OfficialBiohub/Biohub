@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Welcome to Biohub</title>
+<meta name="description" content="Welcome to Biohub — an open home for life-science projects, data and tools." />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧬</text></svg>" />
+<style>
+  :root {
+    --bg: #05100d;
+    --bg-soft: #0b1a16;
+    --card: rgba(255, 255, 255, 0.04);
+    --border: rgba(120, 255, 214, 0.14);
+    --text: #e8fff7;
+    --muted: #93b3a9;
+    --accent: #35e2a4;
+    --accent-2: #48b0ff;
+    --radius: 16px;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body { height: 100%; }
+
+  body {
+    margin: 0;
+    font-family: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: var(--text);
+    background: var(--bg);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  /* Ambient background */
+  .glow {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(90px);
+    opacity: 0.5;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .glow--a { width: 520px; height: 520px; background: #0f6b52; top: -180px; left: -140px; }
+  .glow--b { width: 460px; height: 460px; background: #14456e; bottom: -200px; right: -120px; }
+
+  .grid-lines {
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(120, 255, 214, 0.045) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(120, 255, 214, 0.045) 1px, transparent 1px);
+    background-size: 56px 56px;
+    mask-image: radial-gradient(ellipse at 50% 0%, #000 25%, transparent 78%);
+    -webkit-mask-image: radial-gradient(ellipse at 50% 0%, #000 25%, transparent 78%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .wrap {
+    position: relative;
+    z-index: 1;
+    max-width: 940px;
+    margin: 0 auto;
+    padding: 72px 24px 64px;
+  }
+
+  /* Hero */
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 14px;
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: rgba(53, 226, 164, 0.08);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+  }
+
+  .dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 0 0 rgba(53, 226, 164, 0.6);
+    animation: pulse 2.4s ease-out infinite;
+  }
+
+  @keyframes pulse {
+    0%   { box-shadow: 0 0 0 0 rgba(53, 226, 164, 0.55); }
+    70%  { box-shadow: 0 0 0 12px rgba(53, 226, 164, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(53, 226, 164, 0); }
+  }
+
+  h1 {
+    font-size: clamp(2.4rem, 7vw, 4rem);
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+    margin: 22px 0 0;
+    font-weight: 700;
+  }
+
+  h1 .accent {
+    background: linear-gradient(100deg, var(--accent), var(--accent-2));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .lede {
+    max-width: 620px;
+    margin: 18px 0 0;
+    font-size: clamp(1.02rem, 2.2vw, 1.18rem);
+    color: var(--muted);
+  }
+
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 32px;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 22px;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none;
+    border: 1px solid transparent;
+    transition: transform 0.16s ease, box-shadow 0.16s ease, background 0.16s ease, border-color 0.16s ease;
+  }
+  .btn:hover { transform: translateY(-2px); }
+
+  .btn--primary {
+    color: #04231a;
+    background: linear-gradient(100deg, var(--accent), #6ff0c8);
+    box-shadow: 0 10px 30px -12px rgba(53, 226, 164, 0.75);
+  }
+
+  .btn--ghost {
+    color: var(--text);
+    border-color: var(--border);
+    background: var(--card);
+  }
+  .btn--ghost:hover { border-color: rgba(120, 255, 214, 0.35); }
+
+  /* Terminal card */
+  .terminal {
+    margin-top: 48px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: rgba(3, 12, 10, 0.72);
+    overflow: hidden;
+    backdrop-filter: blur(8px);
+  }
+
+  .terminal__bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 16px;
+    background: rgba(255, 255, 255, 0.03);
+    border-bottom: 1px solid var(--border);
+  }
+  .terminal__bar span {
+    width: 11px; height: 11px; border-radius: 50%;
+    background: #33463f;
+  }
+  .terminal__bar span:nth-child(1) { background: #ff5f57; }
+  .terminal__bar span:nth-child(2) { background: #febc2e; }
+  .terminal__bar span:nth-child(3) { background: #28c840; }
+  .terminal__title {
+    margin-left: 8px;
+    font-size: 0.78rem;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+  }
+
+  pre {
+    margin: 0;
+    padding: 20px 18px;
+    overflow-x: auto;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 0.88rem;
+    line-height: 1.75;
+  }
+  .c-com { color: #5f7f75; }
+  .c-cmd { color: var(--accent); }
+  .c-out { color: #b9d6cd; }
+
+  /* Cards */
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 16px;
+    margin-top: 48px;
+  }
+
+  .card {
+    padding: 22px 20px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--card);
+    transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+  }
+  .card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(120, 255, 214, 0.32);
+    background: rgba(255, 255, 255, 0.06);
+  }
+  .card__icon { font-size: 1.5rem; }
+  .card h3 {
+    margin: 12px 0 6px;
+    font-size: 1.02rem;
+    letter-spacing: -0.01em;
+  }
+  .card p {
+    margin: 0;
+    font-size: 0.92rem;
+    color: var(--muted);
+  }
+
+  footer {
+    margin-top: 56px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.86rem;
+    color: var(--muted);
+  }
+  footer a { color: var(--accent); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+
+  /* Entrance animation */
+  .reveal {
+    opacity: 0;
+    transform: translateY(14px);
+    animation: rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+  .reveal:nth-child(1) { animation-delay: 0.05s; }
+  .d1 { animation-delay: 0.12s; }
+  .d2 { animation-delay: 0.2s; }
+  .d3 { animation-delay: 0.28s; }
+  .d4 { animation-delay: 0.36s; }
+  .d5 { animation-delay: 0.44s; }
+
+  @keyframes rise {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { animation: none; opacity: 1; transform: none; }
+    .dot { animation: none; }
+    .btn:hover, .card:hover { transform: none; }
+  }
+</style>
+</head>
+<body>
+  <div class="glow glow--a"></div>
+  <div class="glow glow--b"></div>
+  <div class="grid-lines"></div>
+
+  <main class="wrap">
+    <header>
+      <div class="badge reveal"><span class="dot"></span> Biohub</div>
+      <h1 class="reveal d1">Welcome to <span class="accent">Biohub</span>.</h1>
+      <p class="lede reveal d2">
+        An open home for life-science projects, data and tools. This page is the
+        starting point of the repository — clone it, build on it, and make it yours.
+      </p>
+
+      <div class="actions reveal d3">
+        <a class="btn btn--primary" href="https://github.com/OfficialBiohub/Biohub">View on GitHub →</a>
+        <a class="btn btn--ghost" href="#start">Get started</a>
+      </div>
+    </header>
+
+    <section class="terminal reveal d4" id="start">
+      <div class="terminal__bar">
+        <span></span><span></span><span></span>
+        <div class="terminal__title">bash — biohub</div>
+      </div>
+<pre><code><span class="c-com"># Clone the repository</span>
+<span class="c-cmd">git clone https://github.com/OfficialBiohub/Biohub.git</span>
+<span class="c-cmd">cd Biohub</span>
+
+<span class="c-com"># Open this welcome page locally</span>
+<span class="c-cmd">python3 -m http.server 8000</span>
+<span class="c-out">Serving HTTP on 0.0.0.0 port 8000 (http://0.0.0.0:8000/) ...</span>
+
+<span class="c-out">👋 Hello, and welcome to Biohub!</span></code></pre>
+    </section>
+
+    <section class="cards">
+      <article class="card reveal d2">
+        <div class="card__icon">🧬</div>
+        <h3>Open science</h3>
+        <p>Research code and datasets kept in the open, versioned and reproducible.</p>
+      </article>
+      <article class="card reveal d3">
+        <div class="card__icon">🛠️</div>
+        <h3>Practical tools</h3>
+        <p>Small, composable utilities that fit into everyday lab and analysis workflows.</p>
+      </article>
+      <article class="card reveal d4">
+        <div class="card__icon">🤝</div>
+        <h3>Built together</h3>
+        <p>Issues and pull requests are welcome — every contribution moves the work forward.</p>
+      </article>
+    </section>
+
+    <footer class="reveal d5">
+      <span>© <span id="year">2026</span> Biohub</span>
+      <span>Made with care · <a href="https://github.com/OfficialBiohub/Biohub">OfficialBiohub/Biohub</a></span>
+    </footer>
+  </main>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Smooth scroll for in-page links
+    document.querySelectorAll('a[href^="#"]').forEach(function (link) {
+      link.addEventListener("click", function (e) {
+        var target = document.querySelector(link.getAttribute("href"));
+        if (!target) return;
+        e.preventDefault();
+        target.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+    });
+  </script>
+</body>
+</html>
